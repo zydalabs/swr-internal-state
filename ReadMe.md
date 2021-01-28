@@ -24,21 +24,21 @@ When a custom hook is called to use a state that is saved in the local storage, 
   1. `useLocalStorage` calls `swr` with the custom fetcher to fetch the value from the local storage, then returns the fetched value or the default value if no data is stored.
 
 The following diagram describes the said flow
-![Get value flow](images/swr-persisted-get.svg)
+![Get value flow](docs/images/swr-persisted-get.svg)
 
 When the `setValue` function is invoked, the following happens:
   1. `swr`'s state is updated with the flag `shouldRevalidate` set to `false` so no revalidation happens.
   1. If the call is done client-side then the local storage is updated with the new value.
 
 The following diagram describes the said flow
-![Set value flow](images/swr-persisted-set.svg)
+![Set value flow](docs/images/swr-persisted-set.svg)
 
 When `removeValue` function is invoked, the following happens:
   1. `swr`'s state is set to the default value with the flag `shouldRevalidate` set to `false` so no revalidation happens.
   1. If the call is done client-side then the related key is removed from the local storage.
 
 The following diagram describes the said flow
-![Remove value flow](images/swr-persisted-remove.svg)
+![Remove value flow](docs/images/swr-persisted-remove.svg)
 
 ### Usage
 Knowledge of `swr` is not required to be able to use the created custom hooks, you only call the hooks in the component that needs them. The value of the related resource is synced across all the components that use it, so when it's updated in one component using `setValue` or `removeValue` functions, the update is synced across all the components that use the custom hook.
