@@ -1,6 +1,6 @@
 {
   "name": "@zyda/swr-internal-state",
-  "version": "0.1.4",
+  "version": "1.0",
   "private": false,
   "description": "Use SWR to manage app's internal state",
   "keywords": [
