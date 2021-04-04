@@ -36,5 +36,7 @@
   ],
   "exclude": [
     "node_modules",
+    "src/hooks/__mocks__",
+    "src/hooks/__tests__"
   ]
 }
