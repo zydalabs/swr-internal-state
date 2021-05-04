@@ -10,6 +10,17 @@ The 2 hooks that we expose are:
 ## When to Use
 This package was made with the intention to be used to manage the internal states of projects that rely heavily on external services and has simple internal states. So -for small/simple states- it can be a convenient replacement for `Redux`, `PullState`, and even React's `Context` API.
 
+## Installation
+With npm...
+```bash
+npm i @zyda/swr-internal-state
+```
+
+Or with yarn...
+```bash
+yarn add @zyda/swr-internal-state
+```
+
 ## How it works
 The 2 used hooks accept similar parameters and have similar return types. Each of them accept a key and a default value. And both of them return an array of the state and its management functions (the exact interface of the hooks is explained below).
 
