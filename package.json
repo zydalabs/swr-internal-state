@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "prepublish": "yarn build",
+    "prepublishOnly": "yarn build",
     "type:check": "tsc --noEmit",
     "test": "jest"
   },
