@@ -20,15 +20,19 @@ const useLocalStorage = <T>(key: string, defaultValue: T|null = null): LocalStor
     // If value not found from store, try to fetch it from local storage
     if (!isServerSide()) {
       const localStorageValue = window.localStorage.getItem(persistentValueKey);
-      if (localStorageValue != null) { value = JSON.parse(localStorageValue); }
+      if (localStorageValue !== null && localStorageValue !== undefined && localStorageValue !== 'undefined') {
+        value = JSON.parse(localStorageValue);
+      }
     }
 
     return value;
   };
+  const initialValue = defaultValue ?? persistentFetcher(key);
 
-  const { data: storedValue = defaultValue, mutate } = useSWR(
-    key, 
-    persistentFetcher, 
+
+  const { data: storedValue = initialValue, mutate } = useSWR(
+    key,
+    persistentFetcher,
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,

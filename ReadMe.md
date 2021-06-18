@@ -84,7 +84,7 @@ This hook is used to manage and sync persisted state between different component
 
 Parameters:
 - `key` (required): a unique key to the state that you want to manage. Used to differentiate states from each other (for example: to tell the difference between `user-info` and `user-cart` states)
-- `defaultValue` (optional, defaults to `null`): The initial value of that state.
+- `defaultValue` (optional, defaults to `value stored in locale storage if exisits or null`): The initial value of that state.
 
 Return values:
 1. The state: what ever you decide to save into that state. Initially it's value equals `defaultValue`.
