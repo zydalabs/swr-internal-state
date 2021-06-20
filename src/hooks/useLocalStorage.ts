@@ -20,7 +20,7 @@ const useLocalStorage = <T>(key: string, defaultValue: T|null = null): LocalStor
     // If value not found from store, try to fetch it from local storage
     if (!isServerSide()) {
       const localStorageValue = window.localStorage.getItem(persistentValueKey);
-      if (localStorageValue !== null && localStorageValue !== undefined && localStorageValue !== 'undefined') {
+      if (localStorageValue != null && localStorageValue !== 'undefined') {
         value = JSON.parse(localStorageValue);
       }
     }
