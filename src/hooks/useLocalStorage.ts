@@ -13,22 +13,17 @@ import { isServerSide } from '../utils';
  * @returns an array of (the saved value, set value function, and remove value function) in the same order.
  */
 const useLocalStorage = <T>(key: string, defaultValue: T|null = null): LocalStorageHookResult<T>  => {
-  // Fetches the data from local storage
-  const persistentFetcher = (persistentValueKey: string) => {
-    let value = defaultValue;
+  let initialValue = defaultValue;
 
-    // If value not found from store, try to fetch it from local storage
-    if (!isServerSide()) {
-      const localStorageValue = window.localStorage.getItem(persistentValueKey);
-      if (localStorageValue != null) { value = JSON.parse(localStorageValue); }
-    }
+  if(!isServerSide()) {
+    let storedValue = window.localStorage.getItem(key);
+    if(storedValue !== null && storedValue !== 'undefined')
+      initialValue = JSON.parse(storedValue);
+  }
 
-    return value;
-  };
-
-  const { data: storedValue = defaultValue, mutate } = useSWR(
-    key, 
-    persistentFetcher, 
+  const { data: value = initialValue, mutate } = useSWR(
+    key,
+    null,
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
@@ -58,7 +53,7 @@ const useLocalStorage = <T>(key: string, defaultValue: T|null = null): LocalStor
     window.localStorage.removeItem(key);
   };
 
-  return [storedValue, setValue, removeValue];
+  return [value, setValue, removeValue];
 };
 
 export default useLocalStorage;
