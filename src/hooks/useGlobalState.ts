@@ -24,7 +24,7 @@ const useGlobalState = <T>(key: string, defaultValue: T|null = null): GlobalStat
     }
   );
 
-  const setState = (value: T): void => { mutate(value, false); };
+  const setState = async (value: T): Promise<void> => { await mutate(value, false); };
 
   return [state, setState];
 };

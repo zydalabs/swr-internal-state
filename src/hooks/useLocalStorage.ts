@@ -33,8 +33,8 @@ const useLocalStorage = <T>(key: string, defaultValue: T|null = null): LocalStor
   );
 
   // ========== Set value ==========
-  const setValue = (value: T): void => {
-    mutate(value, false);
+  const setValue = async (value: T): Promise<void> => {
+    await mutate(value, false);
 
     if (isServerSide()) { return; }
 
@@ -44,8 +44,8 @@ const useLocalStorage = <T>(key: string, defaultValue: T|null = null): LocalStor
   };
 
   // ========== Remove value ==========
-  const removeValue = (): void => {
-    mutate(defaultValue, false);
+  const removeValue = async (): Promise<void> => {
+    await mutate(defaultValue, false);
 
     if (isServerSide()) { return; }
 
